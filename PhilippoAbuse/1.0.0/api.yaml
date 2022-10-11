@@ -7,6 +7,14 @@ contact_info:
 actions:
   - name: get_ip
     description: Returns the n numbers of AbusePage
+    parameters:
+      - name: url
+        description: The URL to Abuse Site
+        multiline: false
+        example: "NO too Hints"
+        required: true
+        schema:
+          type: string
     returns:
       json_schema:
         type: string
