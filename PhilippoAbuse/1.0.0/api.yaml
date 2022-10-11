@@ -1,0 +1,13 @@
+walkoff_version: 1.0.0
+app_version: 1.0.0
+name: PhilippoAbuse
+description: A best PiliphAbuse App
+contact_info:
+  name: Philippo
+actions:
+  - name: get_ip
+    description: Returns the n numbers of AbusePage
+    returns:
+      json_schema:
+        type: string
+      example: NO IT'S TROPP SECRET!
