@@ -29,4 +29,4 @@ class GetAbuse(AppBase):
         return(list(filtered))
 
 if __name__ == "__main__":
-    asyncio.run(Basics.run())
+    asyncio.run(GetAbuse.run())
