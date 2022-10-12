@@ -12,13 +12,13 @@ class GetAbuse(AppBase):
     __version__ = "1.0.0"
     app_name = "PhilippoAbuse"  # this needs to match "name" in api.yaml
 
-    def __init__(self, redis, logger):
+    def __init__(self, redis, logger, console_logger=None):
         """
         Each app should have this __init__ to set up Redis and logging.
         :param redis:
         :param logger:
         """
-        super().__init__(redis, logger)
+        super().__init__(redis, logger, console_logger)
     async def get_ip(self,url):
         req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
         rawsite = urllib.request.urlopen(req)
@@ -29,4 +29,4 @@ class GetAbuse(AppBase):
         return(list(filtered))
 
 if __name__ == "__main__":
-    asyncio.run(GetAbuse.run())
+    GetAbuse.run()
