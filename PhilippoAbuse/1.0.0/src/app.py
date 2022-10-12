@@ -24,7 +24,7 @@ class GetAbuse(AppBase):
         rawsite = urllib.request.urlopen(req)
         content = rawsite.read().decode('utf-8')
         soup = BeautifulSoup(content, 'html.parser')
-        res = soup.find(class_="col-md-4").find_all("a")
+        res = soup.find_all("a")
         filtered = map(lambda ip: ip.contents[0], res)
         return(list(filtered))
 
