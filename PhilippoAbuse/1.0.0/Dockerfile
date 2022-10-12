@@ -8,12 +8,17 @@ FROM base as builder
 RUN apk --no-cache add --update alpine-sdk libffi libffi-dev musl-dev openssl-dev
 
 # Install all of our pip packages in a single directory that we can copy to our base image later
-# Install any binary dependencies needed in our final image - this can be a lot of different stuff
-#RUN apk --no-cache add --update libmagic
-WORKDIR /
+RUN mkdir /install
+WORKDIR /install
 COPY requirements.txt /requirements.txt
-RUN pip install --prefix="/usr/local" -r /requirements.txt
+RUN pip install --prefix="/install" -r /requirements.txt
+
+FROM base
+COPY --from=builder /install /usr/local
 COPY src /app
+
+# Install any binary dependencies needed in our final image
+# RUN apk --no-cache add --update my_binary_dependency
 
 # Finally, lets run our app!
 WORKDIR /app
